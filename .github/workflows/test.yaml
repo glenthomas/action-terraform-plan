@@ -1,0 +1,31 @@
+name: Test
+
+on: pull_request
+
+permissions:
+  contents: read       # Required for actions/checkout
+  id-token: write      # Required for AWS Authentication
+  pull-requests: write # Required to post comments in a PR
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # must be set for the plan to be added as PR comment
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: Cazoo-uk/action-aws-auth@v1
+        with:
+          account_id: '684663619732' # sandbox-platform-dev
+          role: plan
+
+      - name: Terraform Format and Plan
+        uses: ./
+        with:
+          path: test
+          backend_config_file: test/backend.conf
+          var_file: test/terraform.tfvars
+          add_github_comment: 'true'

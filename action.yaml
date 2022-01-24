@@ -1,0 +1,41 @@
+name: Terraform Plan
+description: "Github Action to Run Terraform Plan"
+
+inputs:
+  path:
+    description: "Path of Terraform code"
+    required: true
+  backend_config_file:
+    description: "Backend config file for terraform"
+    required: false
+  var_file:
+    description: "List of tfvars files to use"
+    required: false
+  add_github_comment:
+    description: |
+      The default is "true", which adds a comment to the PR with the results of the plan.
+      Set to "changes-only" to add a comment only when the plan indicates there are changes to apply.
+      Set to "false" to disable the comment - the plan will still appear in the workflow log.
+    default: "true"
+    required: false
+  ssh_key:
+    description: "SSH private key in PEM format for terraform to fetch private git module sources"
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Terraform Format
+      uses: dflook/terraform-fmt-check@356b9450e4e1001bc6941bc955d3c4c9e2bcc756
+      with:
+        path: ${{ inputs.path }}
+
+    - name: Terraform Plan
+      uses: dflook/terraform-plan@42fdaa542ebd758756c05cf2af5aee752b31501e
+      env:
+        TERRAFORM_SSH_KEY: ${{ inputs.ssh_key }}
+      with:
+        path: ${{ inputs.path }}
+        backend_config_file: ${{ inputs.backend_config_file }}
+        var_file: ${{ inputs.var_file }}
+        add_github_comment: ${{ inputs.add_github_comment }}
