@@ -18,9 +18,6 @@ inputs:
       Set to "false" to disable the comment - the plan will still appear in the workflow log.
     default: "true"
     required: false
-  ssh_key:
-    description: "SSH private key in PEM format for terraform to fetch private git module sources"
-    required: false
 
 runs:
   using: "composite"
@@ -32,8 +29,6 @@ runs:
 
     - name: Terraform Plan
       uses: dflook/terraform-plan@42fdaa542ebd758756c05cf2af5aee752b31501e
-      env:
-        TERRAFORM_SSH_KEY: ${{ inputs.ssh_key }}
       with:
         path: ${{ inputs.path }}
         backend_config_file: ${{ inputs.backend_config_file }}
