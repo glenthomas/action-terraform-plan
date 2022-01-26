@@ -17,8 +17,6 @@ permissions:
 jobs:
   terraform-plan:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # must be set for the plan to be added as PR comment, unless add_github_comment is "false"
     steps:
       - uses: actions/checkout@v2
 
@@ -32,6 +30,8 @@ jobs:
       # Run terraform plan
       - name: Terraform Format and Plan
         uses: Cazoo-uk/action-terraform-plan@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # must be set for the plan to be added as PR comment, unless add_github_comment is "false"
         with:
           path: path/to/terraform/code
 ```
