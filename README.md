@@ -36,6 +36,8 @@ jobs:
           path: path/to/terraform/code
 ```
 
+An example of a GHA workflow using this action to perform a Terraform deployment can be found in [example-terraform-workflow](https://github.com/Cazoo-uk/example-terraform-workflow).
+
 ### Defaults
 | Parameters | Default Value  | Required | Description |
 | :---   | :- | :-: | :- |
