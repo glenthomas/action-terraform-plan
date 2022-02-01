@@ -56,3 +56,6 @@ Remote terraform modules can be accessed using `git+ssh://` protocol which requi
   with:
     path: path/to/terraform/code
 ```
+
+### Example
+The use of this shared Composite Action is demonstrated in the [example-terraform-workflow](https://github.com/Cazoo-uk/example-terraform-workflow) repository.
