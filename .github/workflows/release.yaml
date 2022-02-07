@@ -6,6 +6,9 @@ on:
   release:
     types: [published, edited]
 
+permissions:
+  contents: write
+
 jobs:
   create-release:
     if: ${{ github.event_name == 'push' }}
