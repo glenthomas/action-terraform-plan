@@ -23,12 +23,12 @@ runs:
   using: "composite"
   steps:
     - name: Terraform Format
-      uses: dflook/terraform-fmt-check@356b9450e4e1001bc6941bc955d3c4c9e2bcc756
+      uses: dflook/terraform-fmt-check@9007bad8182158c813d05ea0b2a5735d9579f9ac
       with:
         path: ${{ inputs.path }}
 
     - name: Terraform Plan
-      uses: dflook/terraform-plan@42fdaa542ebd758756c05cf2af5aee752b31501e
+      uses: dflook/terraform-plan@7196a67f47a16ef4f7e12ff0b55205e5eb2cee55
       with:
         path: ${{ inputs.path }}
         backend_config_file: ${{ inputs.backend_config_file }}
