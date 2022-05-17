@@ -3,10 +3,10 @@ description: "Github Action to Run Terraform Plan"
 
 inputs:
   path:
-    description: "Path of Terraform code"
+    description: "Path to the Terraform files directory"
     required: true
   label:
-    description: "A friendly name for this plan"
+    description: "A friendly name for the plan (if specified, needs to match the label used in the apply action)"
     required: false
   backend_config_file:
     description: "Backend config file for terraform"
