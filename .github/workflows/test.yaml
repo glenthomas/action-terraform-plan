@@ -26,6 +26,7 @@ jobs:
         uses: ./
         with:
           path: test
+          label: test-job
           backend_config_file: test/backend.conf
           var_file: test/terraform.tfvars
           add_github_comment: 'true'

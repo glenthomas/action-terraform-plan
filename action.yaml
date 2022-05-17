@@ -5,6 +5,9 @@ inputs:
   path:
     description: "Path of Terraform code"
     required: true
+  label:
+    description: "A friendly name for this plan"
+    required: false
   backend_config_file:
     description: "Backend config file for terraform"
     required: false
@@ -31,6 +34,7 @@ runs:
       uses: dflook/terraform-plan@7196a67f47a16ef4f7e12ff0b55205e5eb2cee55
       with:
         path: ${{ inputs.path }}
+        label: ${{ inputs.label }}
         backend_config_file: ${{ inputs.backend_config_file }}
         var_file: ${{ inputs.var_file }}
         add_github_comment: ${{ inputs.add_github_comment }}
