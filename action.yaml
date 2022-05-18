@@ -32,9 +32,22 @@ runs:
 
     - name: Terraform Plan
       uses: dflook/terraform-plan@7196a67f47a16ef4f7e12ff0b55205e5eb2cee55
+      id: plan
       with:
         path: ${{ inputs.path }}
         label: ${{ inputs.label }}
         backend_config_file: ${{ inputs.backend_config_file }}
         var_file: ${{ inputs.var_file }}
         add_github_comment: ${{ inputs.add_github_comment }}
+
+    - name: Job Summary
+      shell: bash
+      run: |
+        echo "### Terraform plan" >> $GITHUB_STEP_SUMMARY
+        echo "Plan: ${{ steps.plan.outputs.to_add }} to add, ${{ steps.plan.outputs.to_change }} to change, ${{ steps.plan.outputs.to_destroy }} to destroy.<br>" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`hcl" >> $GITHUB_STEP_SUMMARY
+        while IFS= read -r line
+        do
+          echo "$line" >> $GITHUB_STEP_SUMMARY
+        done < "${{ steps.plan.outputs.text_plan_path }}"
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
