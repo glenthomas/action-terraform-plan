@@ -22,6 +22,11 @@ inputs:
     default: "true"
     required: false
 
+outputs:
+  changes:
+    description: "If the generated plan would update any resources or outputs this is set to `true`, otherwise it's set to `false`."
+    value: ${{ steps.plan.outputs.changes }}
+
 runs:
   using: "composite"
   steps:
