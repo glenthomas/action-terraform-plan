@@ -1,9 +1,13 @@
 terraform {
-  required_version = "~> 1.1"
+  required_version = "~> 1.3"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.72"
+      version = "~> 4.35"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.1"
     }
   }
 
@@ -24,7 +28,7 @@ output "arn" {
 
 resource "random_id" "rng" {
   keepers = {
-    first = "${timestamp()}"
+    first = timestamp()
   }
   byte_length = 8
 }

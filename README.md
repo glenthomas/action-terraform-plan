@@ -18,7 +18,7 @@ jobs:
   terraform-plan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Authenticate to AWS if necessary
       - name: AWS Authentication
@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # must be set for the plan to be added as PR comment, unless add_github_comment is "false"
         with:
           path: path/to/terraform/code
-          
+
       # Read output from Terraform plan action
       - name: Check if terraform plan has changed
         run:  echo ${{ steps.tf_plan.outputs.changes }}
