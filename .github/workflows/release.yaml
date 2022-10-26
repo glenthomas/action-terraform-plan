@@ -17,7 +17,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.CAZOO_READ_REPO_TOKEN }}
     steps:
-      - uses: rymndhng/release-on-push-action@177dbe7049eb049501bbdd5dd28a763ab721f183
+      - uses: rymndhng/release-on-push-action@8e3c8b4b322c06d1032728971a4eb076e45cd33e
         with:
           bump_version_scheme: norelease
 
