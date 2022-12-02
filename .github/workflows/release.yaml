@@ -26,4 +26,4 @@ jobs:
     runs-on: ubuntu-latest
     name: Update Major Tag
     steps:
-      - uses: Actions-R-Us/actions-tagger@f411bd910a5ad370d4511517e3eac7ff887c90ea
+      - uses: Actions-R-Us/actions-tagger@330ddfac760021349fef7ff62b372f2f691c20fb

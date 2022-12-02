@@ -38,12 +38,12 @@ runs:
   using: "composite"
   steps:
     - name: Terraform Format
-      uses: dflook/terraform-fmt-check@c927c68cc5f817497084d4fb889264faae4275cb
+      uses: dflook/terraform-fmt-check@6cb84070ad9175fe55d6a314a91dddebdbcc0a3d
       with:
         path: ${{ inputs.path }}
 
     - name: Terraform Plan
-      uses: dflook/terraform-plan@cf2c225e3088d0cbd3bedc68690c216033e3013a
+      uses: dflook/terraform-plan@a1baf8064470a030c143e483d61ed9e37087989e
       id: plan
       with:
         path: ${{ inputs.path }}
