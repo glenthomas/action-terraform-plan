@@ -19,7 +19,7 @@ terraform {
 }
 
 data "aws_s3_bucket" "terraform" {
-  bucket = var.bucket
+  bucket = "${var.bucket}${var.bucket_suffix}"
 }
 
 output "arn" {

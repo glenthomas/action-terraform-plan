@@ -11,8 +11,15 @@ inputs:
   backend_config_file:
     description: "Backend config file for terraform"
     required: false
+  backend_config:
+    description: List of backend config values to set, one per line
+    required: false
+    default: ""
   var_file:
     description: "List of tfvars files to use"
+    required: false
+  variables:
+    description: Variable definitions
     required: false
   add_github_comment:
     description: |
@@ -42,7 +49,9 @@ runs:
         path: ${{ inputs.path }}
         label: ${{ inputs.label }}
         backend_config_file: ${{ inputs.backend_config_file }}
+        backend_config: ${{ inputs.backend_config }}
         var_file: ${{ inputs.var_file }}
+        variables: ${{ inputs.variables }}
         add_github_comment: ${{ inputs.add_github_comment }}
 
     - name: Job Summary

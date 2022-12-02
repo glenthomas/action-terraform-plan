@@ -28,5 +28,8 @@ jobs:
           path: test
           label: test-job
           backend_config_file: test/backend.conf
+          backend_config: dynamodb_table="terraform-state-lock"
           var_file: test/terraform.tfvars
+          variables: |
+            bucket_suffix = "684663619732"
           add_github_comment: 'true'
