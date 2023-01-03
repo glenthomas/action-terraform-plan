@@ -33,3 +33,17 @@ jobs:
           variables: |
             bucket_suffix = "684663619732"
           add_github_comment: 'true'
+
+      - name: Terraform Format and Plan with target
+        uses: ./
+        with:
+          path: test
+          label: test-job-target
+          backend_config_file: test/backend.conf
+          backend_config: dynamodb_table="terraform-state-lock"
+          var_file: test/terraform.tfvars
+          variables: |
+            bucket_suffix = "684663619732"
+          add_github_comment: 'true'
+          target: |
+            random_id.rng

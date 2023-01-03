@@ -28,6 +28,9 @@ inputs:
       Set to "false" to disable the comment - the plan will still appear in the workflow log.
     default: "true"
     required: false
+  target:
+    description: List of resources to target for the plan, one per line
+    required: false
 
 outputs:
   changes:
@@ -53,6 +56,7 @@ runs:
         var_file: ${{ inputs.var_file }}
         variables: ${{ inputs.variables }}
         add_github_comment: ${{ inputs.add_github_comment }}
+        target: ${{ inputs.target }}
 
     - name: Job Summary
       shell: bash
