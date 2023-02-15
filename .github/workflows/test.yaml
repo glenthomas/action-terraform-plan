@@ -3,8 +3,8 @@ name: Test
 on: pull_request
 
 permissions:
-  contents: read       # Required for actions/checkout
-  id-token: write      # Required for AWS Authentication
+  contents: read # Required for actions/checkout
+  id-token: write # Required for AWS Authentication
   pull-requests: write # Required to post comments in a PR
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: Cazoo-uk/action-aws-auth@v1
         with:
-          account_id: '684663619732' # sandbox-platform-dev
+          account_id: "684663619732" # sandbox-platform-dev
           role: plan
 
       - name: Terraform Format and Plan
@@ -28,11 +28,11 @@ jobs:
           path: test
           label: test-job
           backend_config_file: test/backend.conf
-          backend_config: dynamodb_table="terraform-state-lock"
+          backend_config: dynamodb_table=terraform-state-lock
           var_file: test/terraform.tfvars
           variables: |
             bucket_suffix = "684663619732"
-          add_github_comment: 'true'
+          add_github_comment: "true"
 
       - name: Terraform Format and Plan with target
         uses: ./
@@ -40,10 +40,10 @@ jobs:
           path: test
           label: test-job-target
           backend_config_file: test/backend.conf
-          backend_config: dynamodb_table="terraform-state-lock"
+          backend_config: dynamodb_table=terraform-state-lock
           var_file: test/terraform.tfvars
           variables: |
             bucket_suffix = "684663619732"
-          add_github_comment: 'true'
+          add_github_comment: "true"
           target: |
             random_id.rng
