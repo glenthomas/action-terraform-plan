@@ -24,8 +24,8 @@ jobs:
       - name: AWS Authentication
         uses: Cazoo-uk/action-aws-auth@v1
         with:
-          account_id: '123456789012'
-          role: plan
+          account: 'cazoo-dev'
+          write_enabled: false
 
       # Run terraform plan
       - name: Terraform Format and Plan

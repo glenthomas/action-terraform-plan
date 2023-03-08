@@ -17,10 +17,10 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Configure AWS Credentials
-        uses: Cazoo-uk/action-aws-auth@v1
+        uses: Cazoo-uk/action-aws-auth@beta
         with:
-          account_id: "684663619732" # sandbox-platform-dev
-          role: plan
+          account: "sandbox-platform-dev"
+          write_enabled: false
 
       - name: Terraform Format and Plan
         uses: ./
