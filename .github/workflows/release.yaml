@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Create Release
     env:
-      GITHUB_TOKEN: ${{ secrets.CAZOO_READ_REPO_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.CAZOO_PLATFORM_BOT_REPO_TOKEN }}
     steps:
       - uses: rymndhng/release-on-push-action@aebba2bbce07a9474bf95e8710e5ee8a9e922fe2
         with:
@@ -27,3 +27,16 @@ jobs:
     name: Update Major Tag
     steps:
       - uses: Actions-R-Us/actions-tagger@330ddfac760021349fef7ff62b372f2f691c20fb
+
+  alert-on-failure:
+    needs: [create-release, update-major-tag]
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    runs-on: ubuntu-latest
+    name: Alert On Failure
+    steps:
+      - uses: Cazoo-uk/action-opsgenie-alert@v1
+        with:
+          api_key: ${{ secrets.TEAM_OPSGENIE_API_KEY }}
+          alias: ${{ github.repository }}-${{ github.workflow }}
+          message: ${{ github.workflow }} ${{ github.action_status }} in ${{ github.repository }}
+          description: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
