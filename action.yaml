@@ -41,7 +41,7 @@ runs:
   using: "composite"
   steps:
     - name: Terraform Format
-      uses: dflook/terraform-fmt-check@09f625dbd8d30cdb8c989b8231957753b84720ca
+      uses: dflook/terraform-fmt-check@f79b43ac034e8dfe06b8ce4eacc8aff128412d49
       with:
         path: ${{ inputs.path }}
 
