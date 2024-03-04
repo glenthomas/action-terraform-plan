@@ -46,7 +46,7 @@ runs:
         path: ${{ inputs.path }}
 
     - name: Terraform Plan
-      uses: dflook/terraform-plan@d3cfbccf539e67b94a8a7c7e9f7d6bec5a627dd6
+      uses: dflook/terraform-plan@0f4a5046f18698eee737a52d4cb11f56f2377a32
       id: plan
       with:
         path: ${{ inputs.path }}
